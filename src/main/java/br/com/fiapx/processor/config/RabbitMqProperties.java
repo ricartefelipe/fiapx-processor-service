@@ -7,6 +7,7 @@ public record RabbitMqProperties(
     String exchange,
     String queue,
     String routingKeyVideoRequested,
+    String routingKeyVideoProcessing,
     String routingKeyVideoCompleted,
     String routingKeyVideoFailed
 ) {
