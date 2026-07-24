@@ -30,13 +30,29 @@ Hackathon SOAT — Fase 5 | FIAP X | Microsserviço 2 de 2
 
 ## Como rodar localmente
 
-Requer RabbitMQ ativo (via `docker-compose.infra.yml` do repositório `fiapx-api-service`).
+### Com Docker Compose (recomendado)
+
+No repositório `fiapx-api-service` (com este repo no diretório pai):
 
 ```bash
+cd ../fiapx-api-service
+docker compose up -d --build
+```
+
+O processor sobe automaticamente junto com a API e a infraestrutura.
+
+### Apenas o processor (desenvolvimento)
+
+Requer RabbitMQ ativo (via `docker-compose.infra.yml` ou `docker-compose.yml` do repositório `fiapx-api-service`):
+
+```bash
+export OUTPUT_DIR=/tmp/fiapx/output
 ./mvnw spring-boot:run
 ```
 
 O serviço sobe na porta **8081**.
+
+Documentação completa: `fiapx-api-service/docs/fase5/como-rodar-localmente.md`
 
 ---
 
