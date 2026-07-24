@@ -34,6 +34,7 @@ app:
     exchange: fiapx.events
     queue: video.processing
     routing-key-video-requested: video.requested
+    routing-key-video-processing: video.processing
     routing-key-video-completed: video.completed
     routing-key-video-failed: video.failed
   storage:
