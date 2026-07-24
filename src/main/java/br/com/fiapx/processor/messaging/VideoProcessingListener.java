@@ -30,6 +30,11 @@ public class VideoProcessingListener {
     @RabbitListener(queues = "${app.rabbitmq.queue}")
     public void handleVideoRequested(VideoRequestedEvent event) {
         log.info("Processamento solicitado para job {}", event.jobId());
+        rabbitTemplate.convertAndSend(
+            properties.exchange(),
+            properties.routingKeyVideoProcessing(),
+            new VideoProcessingEvent(event.jobId())
+        );
         try {
             String outputPath = videoProcessingService.process(event.jobId(), event.storagePath());
             rabbitTemplate.convertAndSend(

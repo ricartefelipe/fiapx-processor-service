@@ -30,6 +30,7 @@ class VideoProcessingListenerTest {
             "fiapx.events",
             "video.processing",
             "video.requested",
+            "video.processing",
             "video.completed",
             "video.failed"
         );
@@ -44,6 +45,11 @@ class VideoProcessingListenerTest {
 
         listener.handleVideoRequested(event);
 
+        verify(rabbitTemplate).convertAndSend(
+            eq("fiapx.events"),
+            eq("video.processing"),
+            eq(new VideoProcessingEvent(jobId))
+        );
         verify(rabbitTemplate).convertAndSend(
             eq("fiapx.events"),
             eq("video.completed"),
