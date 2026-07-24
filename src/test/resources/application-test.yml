@@ -2,3 +2,16 @@ spring:
   autoconfigure:
     exclude:
       - org.springframework.boot.autoconfigure.amqp.RabbitAutoConfiguration
+
+app:
+  rabbitmq:
+    exchange: fiapx.events
+    queue: video.processing
+    routing-key-video-requested: video.requested
+    routing-key-video-completed: video.completed
+    routing-key-video-failed: video.failed
+  storage:
+    output-dir: ${java.io.tmpdir}/fiapx-processor-test/output
+  processing:
+    ffmpeg-command: echo
+    fps: 1

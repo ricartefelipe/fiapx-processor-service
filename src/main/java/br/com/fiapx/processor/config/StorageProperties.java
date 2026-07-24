@@ -1,0 +1,7 @@
+package br.com.fiapx.processor.config;
+
+import org.springframework.boot.context.properties.ConfigurationProperties;
+
+@ConfigurationProperties(prefix = "app.storage")
+public record StorageProperties(String outputDir) {
+}
