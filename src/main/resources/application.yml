@@ -6,6 +6,11 @@ spring:
     port: ${RABBITMQ_PORT:5672}
     username: ${RABBITMQ_USER:guest}
     password: ${RABBITMQ_PASS:guest}
+    listener:
+      simple:
+        concurrency: 3
+        max-concurrency: 10
+        prefetch: 1
 
 server:
   port: 8081
@@ -33,3 +38,6 @@ app:
     routing-key-video-failed: video.failed
   storage:
     output-dir: ${OUTPUT_DIR:/tmp/fiapx/output}
+  processing:
+    ffmpeg-command: ${FFMPEG_COMMAND:ffmpeg}
+    fps: ${PROCESSING_FPS:1}
