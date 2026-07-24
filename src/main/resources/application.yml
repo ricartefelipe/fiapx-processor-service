@@ -1,0 +1,35 @@
+spring:
+  application:
+    name: fiapx-processor-service
+  rabbitmq:
+    host: ${RABBITMQ_HOST:localhost}
+    port: ${RABBITMQ_PORT:5672}
+    username: ${RABBITMQ_USER:guest}
+    password: ${RABBITMQ_PASS:guest}
+
+server:
+  port: 8081
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,prometheus,metrics
+  endpoint:
+    health:
+      probes:
+        enabled: true
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+
+app:
+  rabbitmq:
+    exchange: fiapx.events
+    queue: video.processing
+    routing-key-video-requested: video.requested
+    routing-key-video-completed: video.completed
+    routing-key-video-failed: video.failed
+  storage:
+    output-dir: ${OUTPUT_DIR:/tmp/fiapx/output}
